@@ -8,7 +8,7 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Configure app
-app.set('views', __dirname + '/views');      // Views directory
+app.set('views', __dirname + 'views');      // Views directory
 app.use(express.static('public'));          // Static directory
 app.use(bodyParser.urlencoded({ extended: true })); // req.body
 
@@ -19,9 +19,9 @@ app.use(function(req, res, next) {
     next();
 });
 app.get('/', function (req, res) {
-  res.sendFile('views/index.html' , { root : __dirname});
+  res.sendFile(__dirname + '/views/index.html');
 });
 
-app.listen(process.env.PORT || 3000), function() {
+app.listen((process.env.PORT || 3000), function() {
     console.log("Server running on port 3000...")
 });
