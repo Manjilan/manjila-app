@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 var bodyParser = require("body-parser");
-var db = require("./models/index");
+var db = require("./models");
 
 var personal = [];
 app.use(express.static('public'));
@@ -46,7 +46,7 @@ app.get('/api', function apiIndex(req, res) {
 
 //**************Routes******************//
 app.get('/api/profile', function showMyProfile(req, res){
-  var project = db.Project.find({}, function(err, allProjects){
+  db.Project.find({}, function(err, allProjects){
     if (err) {
       console.log(err);
     } else {
@@ -60,11 +60,11 @@ app.get('/api/profile', function showMyProfile(req, res){
       projects: allProjects
       })
     }
-  })
+  });
 });
 //Show al projects
 app.get('/api/projects', function(req, res){
-  var project = db.Project.find({}, function(err, allProjects){
+  db.Project.find({}, function(err, allProjects){
     if (err) {
       console.log(err);
     } else {
