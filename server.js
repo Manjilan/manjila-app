@@ -28,7 +28,7 @@ app.get('/api', function apiIndex(req, res) {
   // It would be seriously overkill to save any of this to your database.
   // But you should change almost every line of this response.
   res.json({
-    message: "Welcome to my personal api! Here's what you need to know!",
+    message: "Welcome to my world people!!!",
     documentationUrl: "https://github.com/Manjilan/manjila-app", // CHANGE ME
     baseUrl: "https://enigmatic-woodland-73386.herokuapp.com/", // CHANGE ME
     endpoints: [
@@ -45,19 +45,49 @@ app.get('/api', function apiIndex(req, res) {
 
 
 //**************Routes******************//
-app.get('/api/profile', function(req, res){
-  db.Manjila.find().populate('project')
-  .exec(function(err, manjila) {
-       if (err) { return console.log("index error: " + err); }
-       res.json(manjila);
-   });
+app.get('/api/profile', function showMyProfile(req, res){
+  var project = db.Project.find({}, function(err, allProjects){
+    if (err) {
+      console.log(err);
+    } else {
+    res.json({
+      name: "Manjila",
+      githubUsername: "Manjilan" ,
+      githubLink: "https://github.com/Manjilan",
+      image: "https://media.licdn.com/dms/image/C5603AQFH2j__1g97qw/profile-displayphoto-shrink_200_200/0?e=1526079600&v=alpha&t=rNriwzE4lnGbeTs8nnwcKc7mFlwMiDTs1BjzvB0xuo8",
+      personalWebsite: "http://manjilanakarmi.com/",
+      currentCity: "Berkeley",
+      projects: allProjects
+      })
+    }
+  })
 });
+//Show al projects
 app.get('/api/projects', function(req, res){
-
+  var project = db.Project.find({}, function(err, allProjects){
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(allProjects);
+    }
+  })
+});
+//Show one project
+app.get('/api/projects/:id', function(req, res){
+  db.Project.findOne({_id: req.params.id }, function(err, data) {
+    res.json(data);
+  });
 });
 
-app.get('/api/projects/:id', function(req, res){
+// delete book
+app.delete('/api/Projects/:id', function (req, res) {
 
+  console.log('project delete', req.params);
+  db.Project.findOneAndRemove({ _id: req.params.id})
+    .populate('project')
+    .exec(function (err, deletedproject) {
+      res.json(deletedproject);
+  });
 });
 
 

@@ -3,5 +3,5 @@ mongoose.connect("mongodb://localhost/manjila-app");
 
 mongoose.Promise = global.Promise;
 
-module.exports.Manjila = require("./manjila.js");
-module.exports.Project = require("./project.js");
+module.exports.Manjila = require("./manjila");
+module.exports.Project = require("./project");

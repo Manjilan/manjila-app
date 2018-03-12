@@ -1,12 +1,4 @@
-var db = require('./models');
-var manjila = {
-  name: "Manjila",
-  githubUsername: "Manjilan" ,
-  githubLink: "https://github.com/Manjilan",
-  image: "",
-  personalWebsite: "http://manjilanakarmi.com/",
-  currentCity: "Berkeley"
-};
+var db = require('./models/index');
 
 var projectList=[
   {
@@ -35,17 +27,6 @@ var projectList=[
     githubLink: "whatever5"
   }
 ];
-db.Manjila.remove({}, function(err, manjila){
-  console.log('removed profile');
-  db.Manjila.create(manjila, function(err, profile){
-    if (err) {
-      console.log(err);
-      return;
-    }
-    console.log('recreated profile');
-    console.log("created", profile);
-  })
-});
 
 db.Project.remove({}, function(err, projects) {
   console.log('removed all projects');
