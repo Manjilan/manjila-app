@@ -1,5 +1,5 @@
 var mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost/manjila-app");
+mongoose.connect(process.env.MONDODB_URI || "mongodb://localhost/manjila-app");
 
 mongoose.Promise = global.Promise;
 
