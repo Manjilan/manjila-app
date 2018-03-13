@@ -97,9 +97,9 @@ app.post('/api/projects', function(req, res){
 });
 // delete book
 app.delete('/api/Projects/:id', function (req, res) {
-
-  console.log('project delete', req.params);
-  db.Project.findOneAndRemove({ _id: req.params.id})
+  var projectId = req.params.id;
+  console.log('project deleted', req.params);
+  db.Project.findOneAndRemove({_id: projectId})
     .populate('project')
     .exec(function (err, deletedproject) {
       res.json(deletedproject);
