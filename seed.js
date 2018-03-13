@@ -2,28 +2,28 @@ var db = require('./models');
 
 var projectList=[
   {
-    projectName: "GeoQuakes",
+    projectName: "GeoQuake",
     description: "whatever",
     githubLink: "whatever"
   },
   {
-    projectName: "GeoQuakes2",
-    desciption: "whatever2",
+    projectName: "Portfolio Website",
+    description: "whatever2",
     githubLink: "whatever2"
   },
   {
-    projectName: "GeoQuakes3",
-    desciption: "whatever3",
+    projectName: "Marvel API",
+    description: "whatever3",
     githubLink: "whatever3"
   },
   {
-    projectName: "GeoQuakes4",
-    desciption: "whatever4",
+    projectName: "Trivia Game",
+    description: "whatever4",
     githubLink: "whatever4"
   },
   {
-    projectName: "GeoQuakes5",
-    desciption: "whatever5",
+    projectName: "Eventure",
+    description: "whatever5",
     githubLink: "whatever5"
   }
 ];

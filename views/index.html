@@ -1,1 +1,46 @@
-Hello!
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Manjila's App</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+
+  <!-- <link rel="stylesheet" href="/styles/styles.css"> -->
+  <script src="/scripts/app.js"></script>
+
+</head>
+<body>
+  <div class= "row">
+    <h1 class="center-align">Manjila's App</h1>
+    <div class="col s4 offset-s2" id="info">
+      <h3 class="card-panel">About Me</h3>
+
+    </div>
+    <div class="col s4 offset-s1">
+        <form id="newProjectForm">
+          <div>
+            <label for="projectName">Project Name</label>
+            <input type="text" class="form-control" name="projectName" placeholder="Project Name">
+          </div>
+          <div>
+            <label for="desc">Description</label>
+            <input type="text" class="form-control" name="desc" placeholder="Description">
+          </div>
+          <div>
+            <label for="link">Github Link</label>
+            <input type="text" class="form-control" name="link" placeholder="Github Link">
+          </div>
+          <button type="submit" class="btn btn-default">Create Project</button>
+        </form>
+        <div id='projectTarget'>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

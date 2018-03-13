@@ -62,7 +62,7 @@ app.get('/api/profile', function showMyProfile(req, res){
     }
   });
 });
-//Show al projects
+//Show all projects
 app.get('/api/projects', function(req, res){
   db.Project.find({}, function(err, allProjects){
     if (err) {
@@ -78,7 +78,22 @@ app.get('/api/projects/:id', function(req, res){
     res.json(data);
   });
 });
-
+//Create
+app.post('/api/projects', function(req, res){
+  var newProject = new db.Project({
+     projectName: req.body.projectName,
+     description: req.body.description,
+     githubLink: req.body.githubLink
+   });
+   newProject.save(function(err, project){
+       if (err) {
+         return console.log("save error: " + err);
+       }
+       console.log("saved ", project.projectName);
+       // send back the book!
+       res.json(project);
+     });
+});
 // delete book
 app.delete('/api/Projects/:id', function (req, res) {
 
