@@ -5,6 +5,7 @@ var db = require("./models");
 
 var personal = [];
 app.use(express.static('public'));
+app.use(express.static('vendors'));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
