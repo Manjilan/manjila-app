@@ -79,7 +79,7 @@ app.get('/api/projects/:id', function(req, res){
     res.json(data);
   });
 });
-//Create
+//Create project
 app.post('/api/projects', function(req, res){
   var newProject = new db.Project({
      projectName: req.body.projectName,
@@ -95,7 +95,19 @@ app.post('/api/projects', function(req, res){
        res.json(project);
      });
 });
-// delete book
+//update project
+app.put('/api/projects/:id', function (req, res) {
+
+  console.log('projects edit', req.params);
+  console.log('body is', req.body);
+  var projectId = req.params.id;
+  db.Project.findOneAndUpdate({ _id: projectId }, req.body, {new: true})
+    .populate('project')
+    .exec(function (err, updatedproject) {
+      res.json(updatedproject);
+  });
+});
+// delete project
 app.delete('/api/Projects/:id', function (req, res) {
   var projectId = req.params.id;
   console.log('project deleted', req.params);

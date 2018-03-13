@@ -38,6 +38,25 @@ $(document).ready(function(){
     });
   })
 
+  $projectsList.on('click', '.edit-project-button', function() {
+      console.log('clicked edit button');
+      $(this).parent().find(".edit-input").show();
+
+    });
+
+    $booksList.on('click', '.edit-project-submit-button', function() {
+      $(this).parent().hide();
+      let newTitle = $(this).parent().find("input").val();
+      $.ajax({
+        method: "PUT",
+        url: `/api/projects/${ $(this).attr('data-id') }`,
+        data: { projectName: projectName },
+        success: (project) => {
+          $(this).parent().parent().find(".projectName").html(project.projectName);
+        }
+      })
+
+    })
   $('#newProjectForm').on('submit', function(e) {
     e.preventDefault();
     console.log('new project serialized', $(this).serializeArray());
@@ -57,7 +76,7 @@ $(document).ready(function(){
     for(var index = 0; index < allProjects.length; index++) {
       if(allProjects[index]._id === projectId) {
         allProjects.splice(index, 1);
-        break;  // we found our book - no reason to keep searching (this is why we didn't use forEach)
+        break;
       }
     }
     render();
@@ -66,6 +85,7 @@ $(document).ready(function(){
   function handleSuccess(json) {
     allProjects = json;
     render();
+
   }
 
 
@@ -82,7 +102,7 @@ $(document).ready(function(){
     var projectsHtml = getAllProjectsHtml(allProjects);
 
     // append html to the view
-    $projectsList.append(projectsHtml);
+    $projectsList.append(`<h3 class="card-panel">Projects</h3>${projectsHtml}`);
   }
 
   function newProjectSuccess(json) {
@@ -102,8 +122,8 @@ $(document).ready(function(){
     return `<div class="card-panel">
     <p>
     <b class="project-title">${project.projectName}</b>
-    <button class="edit-button" data-id="${project._id}"><i class="fas fa-save fa-lg"></i></button>
-    <button class="edit-button"><i class="far fa-edit fa-lg"></i></button>
+    <button class="edit-project-submit-button" data-id="${project._id}" ><i class="fas fa-save fa-lg"></i></button>
+    <button class="edit-project-button"><i class="far fa-edit fa-lg"></i></button>
     <button class="delete-button" data-id=${project._id}><i class="fas fa-trash-alt fa-lg"></i></button>
     <span class="edit-input" style="display: none">
     </p>

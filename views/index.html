@@ -6,12 +6,12 @@
 
   <title>Manjila's App</title>
 
-
+  <link href="https://fonts.googleapis.com/css?family=Rammetto+One" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
   <script defer src="/scripts/fontawesome-all.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-  <!-- <link rel="stylesheet" href="/styles/styles.css"> -->
+  <link rel="stylesheet" href="/styles/style.css">
   <script src="/scripts/app.js"></script>
 
 </head>
@@ -20,11 +20,14 @@
       <h1 class="center-align">Manjila's App</h1>
   </header>
   <div class= "row">
-    <div class="col s4 offset-s2 teal lighten-5" id="info">
+    <div class="col s3 teal lighten-5" id="info">
       <h3 class="card-panel">About Me</h3>
 
     </div>
-    <div class="col s4 offset-s1">
+    <div class="col s3 offset-s1 teal lighten-5" id='projectTarget'>
+
+    </div>
+    <div class="col s3 offset-s1">
         <form id="newProjectForm">
           <div>
             <label for="projectName">Project Name</label>
@@ -38,11 +41,8 @@
             <label for="link">Github Link</label>
             <input type="text" class="form-control" name="githubLink" placeholder="Github Link">
           </div>
-          <button type="submit" class="btn btn-default">Create Project</button>
+          <button type="submit" class="btn grey lighten-1">Create Project</button>
         </form>
-        <div id='projectTarget'>
-
-        </div>
       </div>
     </div>
   </div>
