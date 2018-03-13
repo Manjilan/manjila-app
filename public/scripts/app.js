@@ -79,8 +79,9 @@ $(document).ready(function(){
       <b class="project-title">${project.projectName}</b>
       <span class="edit-input" style="display: none">
       <p>${project.description}</p>
-      <button class="edit-book-submit-button" data-id="${project._id}">Save</button>
-      <button class="edit-book-button">Edit</button>
+      <button class="edit-button" data-id="${project._id}">Save</button>
+      <button class="edit-button">Edit</button>
+      <button class="delete-button">Delete</button>
       <br>
       </form>
       `;
