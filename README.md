@@ -1,4 +1,4 @@
-#My Personal API app
+##My Personal API app
 
 The app has been designed to show a dashboard with my profile and also list my current projects.
 
