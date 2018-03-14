@@ -12,7 +12,7 @@ $(document).ready(function(){
       $("#info").append(`<div class="card-panel"><h6> Name : ${response.name}</h6> <br>
       <h6>Github Username: ${response.githubUsername} </h6> <br>
       <h6>Github Link: <a href="https://github.com/Manjilan">${response.githubLink}</a></h6><br>
-      <img src="https://media.licdn.com/dms/image/C5603AQFH2j__1g97qw/profile-displayphoto-shrink_200_200/0?e=1526079600&v=alpha&t=rNriwzE4lnGbeTs8nnwcKc7mFlwMiDTs1BjzvB0xuo8"><br>
+      <img class="circle" src="https://media.licdn.com/dms/image/C5603AQFH2j__1g97qw/profile-displayphoto-shrink_200_200/0?e=1526079600&v=alpha&t=rNriwzE4lnGbeTs8nnwcKc7mFlwMiDTs1BjzvB0xuo8"><br>
       <h6> Portfolio Website: <a href="http://manjilanakarmi.com/">${response.personalWebsite}</a></h6> <br>
       <h6> Current City: ${response.currentCity}</h6>
       </div>`);
@@ -40,13 +40,19 @@ $(document).ready(function(){
 
   $projectsList.on('click', '.edit-project-button', function() {
       console.log('clicked edit button');
-      $(this).parent().find(".edit-input").show();
+      // $('.projectDescription').hide();
+      // $('.projectDescriptionInput').show();
+      $(this).parent().siblings('p').toggle('projectDescription');
+      $(this).parent().siblings('input').toggleClass('projectDescriptionInput');
+      // $('.projectDescrptionInput').toggleClass();
+
+      $(this).parent().prop('disabled', false);
 
     });
 
-    $booksList.on('click', '.edit-project-submit-button', function() {
-      $(this).parent().hide();
-      let newTitle = $(this).parent().find("input").val();
+    $projectsList.on('click', '.edit-project-submit-button', function() {
+      // $(this).parent().hide();
+      let projectName = $(this).parent().find("input").val();
       $.ajax({
         method: "PUT",
         url: `/api/projects/${ $(this).attr('data-id') }`,
@@ -57,6 +63,24 @@ $(document).ready(function(){
       })
 
     })
+
+    $projectsList.on('click', '.save-button', function() {
+      // $(this).parent().hide();
+      let newDescription = $(this).parent().siblings("input").val();
+      console.log(newDescription);
+      $.ajax({
+        method: "PUT",
+        url: `/api/projects/${ $(this).attr('data-id') }`,
+        data: { description: newDescription },
+        success: (project) => {
+          $(this).parent().siblings(".projectDescription").html(project.description);
+        }
+      })
+      $(this).parent().siblings('p').toggle('projectDescription');
+      $(this).parent().siblings('input').toggleClass('projectDescriptionInput');
+
+    })
+
   $('#newProjectForm').on('submit', function(e) {
     e.preventDefault();
     console.log('new project serialized', $(this).serializeArray());
@@ -122,15 +146,13 @@ $(document).ready(function(){
     return `<div class="card-panel">
     <p>
     <b class="project-title">${project.projectName}</b>
-    <button class="edit-project-submit-button" data-id="${project._id}" ><i class="fas fa-save fa-lg"></i></button>
+    <button class="save-button" data-id="${project._id}" ><i class="fas fa-save fa-lg"></i></button>
     <button class="edit-project-button"><i class="far fa-edit fa-lg"></i></button>
-    <button class="delete-button" data-id=${project._id}><i class="fas fa-trash-alt fa-lg"></i></button>
-    <span class="edit-input" style="display: none">
+    <button class="delete-button" data-id="${project._id}"><i class="fas fa-trash-alt fa-lg"></i></button>
     </p>
-    <hr><p>${project.description}</p>
-
+    <hr><p class="projectDescription">${project.description}</p>
+        <input type="text" class="projectDescriptionInput" value="${project.description}" />
     <br>
-    </form>
     </div>
     `;
   }
